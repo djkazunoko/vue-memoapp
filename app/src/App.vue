@@ -14,6 +14,10 @@ function addMemo() {
 function editMemo(memo) {
   editingMemo.value = memo;
 }
+
+function doneEdit() {
+  editingMemo.value = null;
+}
 </script>
 
 <template>
@@ -30,7 +34,7 @@ function editMemo(memo) {
       <textarea v-model="editingMemo.content"></textarea>
     </div>
     <div>
-      <button>編集</button>
+      <button @click="doneEdit">編集</button>
     </div>
   </div>
 </template>
