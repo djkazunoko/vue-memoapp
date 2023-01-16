@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import MemoForm from "./components/MemoForm.vue";
 
 let id = 0;
 
@@ -29,14 +30,13 @@ function doneEdit() {
   <form @submit.prevent="addMemo">
     <button>新規作成</button>
   </form>
-  <div v-if="editingMemo">
-    <div>
-      <textarea v-model="editingMemo.content"></textarea>
-    </div>
-    <div>
-      <button @click="doneEdit">編集</button>
-    </div>
-  </div>
+
+  <MemoForm
+    v-if="editingMemo"
+    v-model:content="editingMemo.content"
+    @save="doneEdit"
+  >
+  </MemoForm>
 </template>
 
 <style scoped></style>
