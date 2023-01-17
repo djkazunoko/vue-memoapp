@@ -21,6 +21,12 @@ function doneEdit() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(memos.value));
   editingMemo.value = null;
 }
+
+function removeMemo() {
+  memos.value = memos.value.filter((memo) => memo !== editingMemo.value);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(memos.value));
+  editingMemo.value = null;
+}
 </script>
 
 <template>
@@ -37,6 +43,7 @@ function doneEdit() {
     v-if="editingMemo"
     v-model:content="editingMemo.content"
     @save="doneEdit"
+    @remove="removeMemo"
   >
   </MemoForm>
 </template>
