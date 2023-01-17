@@ -18,7 +18,11 @@ function editMemo(memo) {
 }
 
 function doneEdit() {
+  editingMemo.value.content = editingMemo.value.content.trim();
   localStorage.setItem(STORAGE_KEY, JSON.stringify(memos.value));
+  if (!editingMemo.value.content) {
+    removeMemo();
+  }
   editingMemo.value = null;
 }
 
