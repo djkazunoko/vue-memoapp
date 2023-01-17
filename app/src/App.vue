@@ -37,7 +37,9 @@ function removeMemo() {
 <template>
   <ul>
     <li v-for="memo in memos" :key="memo.id">
-      <a @click.prevent="editMemo(memo)" href="#">{{ memo.content }}</a>
+      <a @click.prevent="editMemo(memo)" href="#">
+        {{ memo.content.split(/\n/)[0] }}
+      </a>
     </li>
   </ul>
   <form @submit.prevent="addMemo">
