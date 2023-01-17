@@ -11,6 +11,7 @@ function addMemo() {
   const memo = { id: id++, content: "新規メモ" };
   memos.value.push(memo);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(memos.value));
+  editMemo(memos.value.slice(-1)[0]);
 }
 
 function editMemo(memo) {
