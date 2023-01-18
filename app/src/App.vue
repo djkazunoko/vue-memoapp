@@ -15,11 +15,13 @@ function addMemo() {
 }
 
 function editMemo(memo) {
-  editingMemo.value = memo;
+  editingMemo.value = { id: memo.id, content: memo.content };
 }
 
 function doneEdit() {
   editingMemo.value.content = editingMemo.value.content.trim();
+  const memo = memos.value.find((memo) => memo.id === editingMemo.value.id);
+  memo.content = editingMemo.value.content;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(memos.value));
   if (!editingMemo.value.content) {
     removeMemo();
@@ -28,7 +30,7 @@ function doneEdit() {
 }
 
 function removeMemo() {
-  memos.value = memos.value.filter((memo) => memo !== editingMemo.value);
+  memos.value = memos.value.filter((memo) => memo.id !== editingMemo.value.id);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(memos.value));
   editingMemo.value = null;
 }
