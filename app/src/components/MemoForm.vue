@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onUpdated } from "vue";
 
 defineProps({ content: String });
 defineEmits(["update:content", "save", "remove"]);
@@ -7,6 +7,10 @@ defineEmits(["update:content", "save", "remove"]);
 const textarea = ref(null);
 
 onMounted(() => {
+  textarea.value.focus();
+});
+
+onUpdated(() => {
   textarea.value.focus();
 });
 </script>
