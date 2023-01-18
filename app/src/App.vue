@@ -2,13 +2,12 @@
 import { ref } from "vue";
 import MemoForm from "./components/MemoForm.vue";
 
-let id = 0;
 const STORAGE_KEY = "vue-memoapp";
 const memos = ref(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"));
 const editingMemo = ref();
 
 function addMemo() {
-  const memo = { id: id++, content: "新規メモ" };
+  const memo = { id: Date.now(), content: "新規メモ" };
   memos.value.push(memo);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(memos.value));
   editMemo(memos.value.slice(-1)[0]);
