@@ -19,13 +19,14 @@ function editMemo(memo) {
 
 function doneEdit() {
   editingMemo.value.content = editingMemo.value.content.trim();
-  const memo = memos.value.find((memo) => memo.id === editingMemo.value.id);
-  memo.content = editingMemo.value.content;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(memos.value));
   if (!editingMemo.value.content) {
     removeMemo();
+  } else {
+    const memo = memos.value.find((memo) => memo.id === editingMemo.value.id);
+    memo.content = editingMemo.value.content;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(memos.value));
+    editingMemo.value = null;
   }
-  editingMemo.value = null;
 }
 
 function removeMemo() {
