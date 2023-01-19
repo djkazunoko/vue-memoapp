@@ -36,24 +36,41 @@ function removeMemo() {
 </script>
 
 <template>
-  <ul>
-    <li v-for="memo in memos" :key="memo.id">
-      <a @click.prevent="editMemo(memo)" href="#">
-        {{ memo.content.split(/\n/)[0] }}
-      </a>
-    </li>
-  </ul>
   <form @submit.prevent="addMemo">
     <button>新規作成</button>
   </form>
+  <div class="main">
+    <ul>
+      <li v-for="memo in memos" :key="memo.id">
+        <a @click.prevent="editMemo(memo)" href="#">
+          {{ memo.content.split(/\n/)[0] }}
+        </a>
+      </li>
+    </ul>
 
-  <MemoForm
-    v-if="editingMemo"
-    v-model:content="editingMemo.content"
-    @save="doneEdit"
-    @remove="removeMemo"
-  >
-  </MemoForm>
+    <MemoForm
+      v-if="editingMemo"
+      v-model:content="editingMemo.content"
+      @save="doneEdit"
+      @remove="removeMemo"
+    >
+    </MemoForm>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.main {
+  display: flex;
+}
+.main ul {
+  padding-left: 0px;
+  padding-right: 20px;
+  margin: 0;
+}
+button {
+  cursor: pointer;
+}
+form {
+  margin-bottom: 1em;
+}
+</style>
