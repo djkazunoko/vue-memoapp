@@ -23,6 +23,7 @@ onUpdated(() => {
       :value="content"
       @input="$emit('update:content', $event.target.value)"
       ref="textarea"
+      placeholder="文字を入力してください"
     ></textarea>
     <div>
       <button @click="$emit('save')">保存</button>
