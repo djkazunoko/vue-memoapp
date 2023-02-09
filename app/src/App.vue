@@ -36,6 +36,10 @@ function removeMemo() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(memos.value));
   editingMemo.value = null;
 }
+
+function getFirstLine(text) {
+  return text.split(/\n/)[0];
+}
 </script>
 
 <template>
@@ -46,7 +50,7 @@ function removeMemo() {
     <ul>
       <li v-for="memo in memos" :key="memo.id">
         <a @click.prevent="editMemo(memo)" href="#">
-          {{ memo.content.split(/\n/)[0] }}
+          {{ getFirstLine(memo.content) }}
         </a>
       </li>
     </ul>
