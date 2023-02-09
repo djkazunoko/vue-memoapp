@@ -8,9 +8,7 @@ const editingMemo = ref();
 
 function addMemo() {
   const memo = { id: Date.now(), content: "" };
-  memos.value.push(memo);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(memos.value));
-  editMemo(memos.value.slice(-1)[0]);
+  editMemo(memo);
 }
 
 function editMemo(memo) {
@@ -23,7 +21,11 @@ function doneEdit() {
     removeMemo();
   } else {
     const memo = memos.value.find((memo) => memo.id === editingMemo.value.id);
-    memo.content = editingMemo.value.content;
+    if (memo) {
+      memo.content = editingMemo.value.content;
+    } else {
+      memos.value.push(editingMemo.value);
+    }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(memos.value));
     editingMemo.value = null;
   }
