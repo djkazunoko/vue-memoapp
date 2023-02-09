@@ -49,7 +49,11 @@ function getFirstLine(text) {
   <div class="main">
     <ul>
       <li v-for="memo in memos" :key="memo.id">
-        <a @click.prevent="editMemo(memo)" href="#">
+        <a
+          @click.prevent="editMemo(memo)"
+          href="#"
+          :class="memo.id === editingMemo?.id ? 'selected' : ''"
+        >
           {{ getFirstLine(memo.content) }}
         </a>
       </li>
@@ -79,5 +83,10 @@ button {
 }
 form {
   margin-bottom: 1em;
+}
+.selected {
+  color: inherit;
+  text-decoration: none;
+  pointer-events: none;
 }
 </style>
