@@ -6,7 +6,7 @@ const STORAGE_KEY = "vue-memoapp";
 const memos = ref(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"));
 const editingMemo = ref();
 
-function addMemo() {
+function createMemo() {
   const memo = { id: Date.now(), content: "" };
   editMemo(memo);
 }
@@ -43,7 +43,7 @@ function getFirstLine(text) {
 </script>
 
 <template>
-  <form @submit.prevent="addMemo">
+  <form @submit.prevent="createMemo">
     <button>新規作成</button>
   </form>
   <div class="main">
